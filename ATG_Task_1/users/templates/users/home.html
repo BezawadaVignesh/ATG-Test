@@ -1,0 +1,116 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% if not user.is_authenticated %}
+<div>
+    <div class="center text-center">
+        <h2>Login to view dashboard</h2><br>
+        <a class="btn btn-outline-dark" href="{% url 'login' %}">Login</a>
+    </div>
+
+</div>
+{% else %}
+
+<div class="container center" style="height:100%">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="content-section" style="background-color:#F9F9F9;height:100%">
+                {% if user.Type == 1 %}
+                <h1 align="center">Dashboard for Patient</h1><br><br>
+                <div class="media">
+
+                    <img class="rounded-circle account-img" style="width:200px;padding:20px" src="{{ user.image.url }}">
+
+                    <div class="media-body">
+                        <h2 class="account-heading">{{ user.username }}</h2>
+                        <p class="text-secondary">Email: {{ user.email }}</p>
+                        <p class="text-secondary">Address: {{ user.address }}</p>
+                        <p class="text-secondary">Ph. : {{ user.ph }}</p>
+                    </div>
+                </div>
+                <div style="padding:5%">
+                    <legend>Patient info</legend>
+                    <hr>
+                    <div class="media">
+                        <div class="media-body">
+                            <table cellpadding="4">
+                                <tr>
+                                    <td><p class="text-secondary"><b>Occupation: </b></p></td>
+                                    <td><p class="text-secondary">{{ user.pprofile.Occupation }}</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p class="text-secondary"><b>Insurance Company name: </b></p></td>
+                                    <td><p class="text-secondary">{{ user.pprofile.i_company_name }}</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p class="text-secondary"><b>Symptom: </b></p></td>
+                                    <td><p class="text-secondary">{{ user.pprofile_set.symptom }}</p></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <h1 align="center">Dashboard for Doctor</h1>
+                <div class="media">
+                    <img class="rounded-circle account-img" style="width:200px;padding:20px" src="{{ user.image.url }}">
+                    <div class="media-body">
+                        <h2 class="account-heading">{{ user.username }}</h2>
+                        <p class="text-secondary">Email: {{ user.email }}</p>
+                        <p class="text-secondary">Address: {{ user.address }}</p>
+                        <p class="text-secondary">Ph. : {{ user.ph }}</p>
+                    </div>
+                </div>
+                <div style="padding:5%">
+                    <legend>Doctor info</legend>
+                    <hr>
+                    <div class="media">
+                        <div class="media-body">
+                            <table cellpadding="4">
+                                <tr>
+                                    <td><p class="text-secondary"><b>Experience (in years): </b></p></td>
+                                    <td><p class="text-secondary">{{ user.dprofile.exp_in_years }}</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p class="text-secondary"><b>Doctor: </b></p></td>
+                                    <td><p class="text-secondary">{{ user.dprofile.edu }}</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p class="text-secondary"><b>Awards: </b></p></td>
+                                    <td><p class="text-secondary">{{ user.dprofile.awards }}</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p class="text-secondary"><b>Fee: </b></p></td>
+                                    <td><p class="text-secondary">{{ user.dprofile.fee_charged }}</p></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                {% endif %}
+                <div class="text-center">
+                    <a class="btn btn-outline-dark" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endif %}
+</div>
+<style>
+        .center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+    </style>
+{% endblock content %}

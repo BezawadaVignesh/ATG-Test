@@ -1,0 +1,26 @@
+{% extends "users/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="content-section">
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Register</legend>
+                        {{ u_form|crispy }}
+                        {{ p_form|crispy }}
+                    </fieldset>
+                    <div class="form-group" style="display: flex;justify-content: space-between;">
+                        <button class="btn btn-outline-info" type="submit">Register</button>
+                        <button class=" btn btn-outline-info" onclick="history.back()">Back</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+{% endblock content %}

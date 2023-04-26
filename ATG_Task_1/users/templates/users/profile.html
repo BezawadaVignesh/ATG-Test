@@ -1,0 +1,15 @@
+{% extends "users/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="content-section">
+                <h2>hi {% if user.Type %}Doctor{% endif %}{{ user.username }}</h2>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+{% endblock content %}

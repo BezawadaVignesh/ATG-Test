@@ -1,0 +1,44 @@
+{% extends "users/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="center cnt">
+    <div class="content-section center text-center">
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Login</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-light bg-lg" type="submit">Login</button>
+            </div>
+            <a href="#">Forgot password?</a><br>
+            Doesn't have an account <a href="{% url 'register' %}">Register</a>
+        </form>
+    </div>
+</div>
+<style>
+    .cnt {
+        border:solid;
+        background: #343a40; /* fallback for old browsers */
+    width:30%;
+    height:75%;
+        color:white;
+        border-radius:10px;
+    }
+
+    .center{
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .content-section{
+        width:60%;
+        heigth:60%;
+    }
+</style>
+{% endblock content %}

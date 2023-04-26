@@ -1,0 +1,22 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div>
+        <div class="center text-center">
+            Register as ?<br>
+            <a class="btn btn-outline-dark" href="{% url 'register-doctor' %}">Doctor</a>
+            <a class="btn btn-outline-dark" href="{% url 'register-patient' %}">Patient</a>
+        </div>
+    <style>
+        .center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</div>
+{% endblock content %}
